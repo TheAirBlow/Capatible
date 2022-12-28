@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "capatible",
+    "name": "Capatible!",
+    "description": "Makes so modding doesn't make my life miserable",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/TheAirBlow/Capatible",
+    "updateUrl": "",
+    "authorList": [
+      "TheAirBlow"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
