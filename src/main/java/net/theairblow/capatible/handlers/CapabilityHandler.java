@@ -9,10 +9,12 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.theairblow.capatible.Capatible;
+import net.theairblow.capatible.annotations.EventHandler;
 import net.theairblow.capatible.api.CapabilityRegistry;
 import net.theairblow.capatible.api.GenericType;
 import net.theairblow.capatible.data.CapabilityProvider;
 
+@EventHandler
 public class CapabilityHandler {
     @SubscribeEvent
     public void onAttachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
