@@ -12,6 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.theairblow.capatible.annotations.Command;
 import net.theairblow.capatible.annotations.EventHandler;
+import net.theairblow.capatible.api.CapabilityRegistry;
+import net.theairblow.capatible.api.ICapability;
 import net.theairblow.capatible.data.CapabilityFactory;
 import net.theairblow.capatible.data.CapabilityStorage;
 import net.theairblow.capatible.data.ICapabilityHolder;
@@ -76,6 +78,21 @@ public class Capatible {
         for (Class<?> cl : classes) {
             LOGGER.info("Registering event handler for {}", cl.getCanonicalName());
             MinecraftForge.EVENT_BUS.register(cl);
+        }
+
+        classes = ref.getTypesAnnotatedWith(net.theairblow.capatible.annotations.Capability.class);
+        for (Class<?> cl : classes) {
+            LOGGER.info("Registering capability {}", cl.getCanonicalName());
+            try {
+                CapabilityRegistry.register((ICapability) cl.newInstance());
+            } catch (InstantiationException | IllegalAccessException e) {
+                Capatible.LOGGER.error("Failed to register capability {}", cl.getCanonicalName());
+                e.printStackTrace();
+
+                Capatible.LOGGER.error("THIS IS A SERIOUS PROBLEM! DO NOT IGNORE! " +
+                        "IT MEANS THAT A MOD THAT IS USING CAPATIBLE IS BROKEN, " +
+                        "SO REPORT THIS ISSUE TO DEVS OF THAT MOD IMMEDIATELY!");
+            }
         }
 
         classes = ref.getTypesAnnotatedWith(Command.class);
