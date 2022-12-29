@@ -31,7 +31,7 @@ import java.util.function.Predicate;
 
 @Mod(modid = Capatible.MOD_ID, name = Capatible.MOD_NAME, version = Capatible.VERSION)
 public class Capatible {
-    private final List<Class<?>> commands = new ArrayList<Class<?>>();
+    private final List<Class<?>> commands = new ArrayList<>();
     public static final String MOD_ID = "capatible";
     public static final String MOD_NAME = "Capatible!";
     public static final String VERSION = "1.0.0";
