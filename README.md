@@ -1,7 +1,19 @@
 # Capatible
 This is a core library for all of my mods. If you just want to use one of my mods, then just download it off curseforge and put it into mods folder.
 
-## API
+## Developers
+### Dependency
+```groovy
+repositories {
+    maven {
+        url 'https://cdn.sussy.tech/repo'
+    }
+}
+
+dependencies {
+    implementation 'net.theairblow:capatible:1.0.0'
+}
+```
 ### Capabilities
 #### Implementing
 1) Make a class that implements `ICapability`
