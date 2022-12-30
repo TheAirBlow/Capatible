@@ -1,10 +1,11 @@
 plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'maven-publish'
 }
 
 group = 'net.theairblow'
-version = '1.0.0'
+version = '1.0.2'
 
 java {
     archivesBaseName = 'capatible'
@@ -43,9 +44,26 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+repositories {
+    maven {
+        url 'https://cdn.sussy.tech/repo2/'
+    }
+    maven {
+        url "https://maven.cleanroommc.com"
+    }
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
-    implementation 'org.reflections:reflections:0.10.2'
+    implementation 'eu.infomas:annotation-detector:3.1.0-SNAPSHOT'
+    implementation fg.deobf("zone.rong:mixinbooter:7.0")
+}
+
+shadowJar {
+    dependencies {
+        exclude '*.dd' // For some reason it excluded everything except includes
+        include dependency('eu.infomas:annotation-detector:3.1.0-SNAPSHOT')
+    }
 }
 
 jar {
@@ -67,7 +85,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'net.theairblow'
             artifactId = 'capatible'
-            version = '1.0.0'
+            version = '1.0.2'
 
             from components.java
             pom {
